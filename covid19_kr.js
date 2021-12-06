@@ -37,7 +37,7 @@ const CommonUtil = {
     
         return isValid;
     },
-    compareVersion: function (version1 = '', version2 = '') {
+    compareVersion: (version1 = '', version2 = '') => {
         version1 = version1.replace(/\./gi, '');
         version2 = version2.replace(/\./gi, '');
 
@@ -85,10 +85,10 @@ const Covid19Client = {
             log(e.message);
         }
     },
-    clearCache: async function () {
+    clearCache: async () => {
         this.fm.remove(this.root);
     },
-    updateModule: async function () {
+    updateModule: async () => {
         try {
             const latestVersion = await new Request('https://raw.githubusercontent.com/clauzewitz/scriptable-covid19-widgets/main/version').loadString();
 
@@ -104,7 +104,7 @@ const Covid19Client = {
         }
     },
     //----------------------------------------------
-    presentAlert: async function (prompt = '', items = ['OK'], asSheet = false) {
+    presentAlert: async (prompt = '', items = ['OK'], asSheet = false) => {
         try {
             const alert = new Alert();
             alert.message = prompt;
