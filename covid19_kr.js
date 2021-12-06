@@ -1,4 +1,4 @@
-const VERSION = '1.0.1';
+const VERSION = '1.0.2';
 
 const DEBUG = false;
 const log = (args) => {
@@ -141,10 +141,10 @@ const createWidget = async (data) => {
     addSymbol(titleStack, 'burn', titleFontSize);
     titleStack.addSpacer(2);
 
-    addText(titleStack, '코로나-19', 'center', titleFontSize);
+    addText(titleStack, 'Covid-19', 'center', titleFontSize, true);
     titleStack.addSpacer();
     
-    addText(widget, data.count.domestic, 'center', getCountSize(count));
+    addText(widget, data.count.domestic, 'center', getCountSize(count), true);
     
     widget.addSpacer();
     
@@ -163,10 +163,10 @@ const addSymbol = (container, name, size) => {
     return icon;
 };
 
-const addText = (container, text, align, size) => {
+const addText = (container, text, align = 'center', size = 12, isBold = false) => {
     const txt = container.addText(text);
     txt[`${align}AlignText`]();
-    txt.font = Font.systemFont(size);
+    txt.font = isBold ? Font.boldSystemFont(size) : Font.systemFont(size);
     txt.shadowRadius = 3;
     txt.textColor = Color.white();
     txt.shadowColor = Color.black();
