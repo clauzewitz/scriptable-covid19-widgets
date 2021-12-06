@@ -194,7 +194,7 @@ const MENU_ROWS = {
         title: 'Check for Updates',
         subtitle: 'Check for updates to the latest version.',
         onSelect: async () => {
-            InstagramClient.updateModule();
+            Covid19Client.updateModule();
         }
     },
     preview: {
@@ -212,7 +212,7 @@ const MENU_ROWS = {
         title: 'Clear cache',
         subtitle: 'Clear all caches.',
         onSelect: async () => {
-            await InstagramClient.clearCache();
+            await Covid19Client.clearCache();
         }
     }
 };
