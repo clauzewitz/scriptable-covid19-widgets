@@ -41,7 +41,7 @@ const CommonUtil = {
         version1 = version1.replace(/\.|\s|\r\n|\r|\n/gi, '');
         version2 = version2.replace(/\.|\s|\r\n|\r|\n/gi, '');
 
-        if (!this.isNumber(version1) || !this.isNumber(version2)) {
+        if (!CommonUtil.isNumber(version1) || !CommonUtil.isNumber(version2)) {
             return false;
         }
 
@@ -95,9 +95,9 @@ const Covid19Client = {
             if (CommonUtil.compareVersion(VERSION, latestVersion)) {
                 const code = await new Request('https://raw.githubusercontent.com/clauzewitz/scriptable-covid19-widgets/main/covid19_kr.js').loadString();
                 this.fm.writeString(this.fm.joinPath(this.fm.documentsDirectory(), `${Script.name()}.js`), code);
-                await this.presentAlert(`Update to version ${latestVersion}\nPlease launch the app again.`);
+                await Covid19Client.presentAlert(`Update to version ${latestVersion}\nPlease launch the app again.`);
             } else {
-                await this.presentAlert(`version ${VERSION} is currently the newest version available.`);
+                await Covid19Client.presentAlert(`version ${VERSION} is currently the newest version available.`);
             }
         } catch (e) {
             log(e.message);
