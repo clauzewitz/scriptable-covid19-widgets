@@ -129,6 +129,7 @@ const createWidget = async (data) => {
     widget.url = ARGUMENTS.sourceUrl;
     widget.setPadding(padding, padding, padding, padding);
     widget.backgroundColor = new Color(getLevelColor(count));
+    widget.addSpacer();
     
     const titleRow = widget.addStack();
     const titleStack = titleRow.addStack();
@@ -144,6 +145,9 @@ const createWidget = async (data) => {
     titleStack.addSpacer();
     
     addText(widget, data.count.domestic, 'center', getCountSize(count));
+    
+    widget.addSpacer();
+    
     addText(widget, data.date.replace(/\(|\)/g, '').split(',')[0], 'right', 10);
     addText(widget, `2차 접종률: ${data.vaccineRate}`, 'right', 10);
     
