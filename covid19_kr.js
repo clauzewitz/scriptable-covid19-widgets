@@ -38,8 +38,8 @@ const CommonUtil = {
         return isValid;
     },
     compareVersion: (version1 = '', version2 = '') => {
-        version1 = version1.replace(/\./gi, '');
-        version2 = version2.replace(/\./gi, '');
+        version1 = version1.replace(/\.|\s|\r\n|\r|\n/gi, '');
+        version2 = version2.replace(/\.|\s|\r\n|\r|\n/gi, '');
 
         if (!this.isNumber(version1) || !this.isNumber(version2)) {
             return false;
