@@ -134,12 +134,15 @@ const createWidget = async (data) => {
     const titleStack = titleRow.addStack();
     titleStack.layoutHorizontally();
     titleStack.centerAlignContent();
+    titleStack.addSpacer();
     
     const titleFontSize = Device.isPhone() ? 17 : 20;
     addSymbol(titleStack, 'burn', titleFontSize);
     titleStack.addSpacer(2);
 
     addText(titleStack, '코로나-19', 'center', titleFontSize);
+    titleStack.addSpacer();
+    
     addText(widget, data.count.domestic, 'center', getCountSize(count));
     addText(widget, data.date.replace(/\(|\)/g, '').split(',')[0], 'right', 10);
     addText(widget, `2차 접종률: ${data.vaccineRate}`, 'right', 10);
