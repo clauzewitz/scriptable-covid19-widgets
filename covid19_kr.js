@@ -1,3 +1,6 @@
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: light-gray; icon-glyph: notes-medical;
 const VERSION = '1.0.2';
 
 const DEBUG = false;
