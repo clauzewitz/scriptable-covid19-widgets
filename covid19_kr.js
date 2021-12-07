@@ -74,7 +74,7 @@ const Covid19Client = {
                 const CONTAINER = 'div.mainlive_container div.liveboard_layout';
                 let renewalDate = document.querySelector(\`\${CONTAINER} h2 span.livedate\`)?.innerText || '';
                 let domesticCount = document.querySelector(\`\${CONTAINER} div.occur_graph > table.ds_table tbody > tr:first-of-type > td:nth-of-type(4) > span\`)?.innerText ?? 0;
-                let vaccineRateTitle = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .item\`)?.innerText :: '';
+                let vaccineRateTitle = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .item\`)?.innerText || '';
                 let vaccineRate = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .percent\`)?.innerText ?? '0%';
             
                 completion({
