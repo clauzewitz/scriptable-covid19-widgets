@@ -77,7 +77,7 @@ const Covid19Client = {
                 let vaccineRate = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .percent\`)?.innerText ?? '0%';
             
                 completion({
-                    date: date.match(/\d{2}\.\d{2}\.\s00시 기준/g).pop(),
+                    date: date.match(/\\d{2}\\.\\d{2}\\.\\s00시 기준/g).pop(),
                     count: {
                         domestic: domestic
                     },
