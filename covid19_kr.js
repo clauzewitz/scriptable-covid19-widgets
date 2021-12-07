@@ -77,7 +77,7 @@ const Covid19Client = {
                 let vaccineRate = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .percent\`)?.innerText ?? '0%';
             
                 completion({
-                    date: date,
+                    date: date.match(/\d{2}\.\d{2}\.\s00시 기준/g).pop(),
                     count: {
                         domestic: domestic
                     },
@@ -151,7 +151,7 @@ const createWidget = async (data) => {
     
     widget.addSpacer();
     
-    addText(widget, data.date.replace(/\(|\)/g, '').split(',')[0], 'right', 10);
+    addText(widget, data.date, 'right', 10);
     addText(widget, `2차 접종률: ${data.vaccineRate}`, 'right', 10);
     
     return widget;
