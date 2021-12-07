@@ -83,7 +83,7 @@ const Covid19Client = {
                         domestic: domesticCount
                     },
                     vaccine: {
-                        title: vaccineRateTitle
+                        title: vaccineRateTitle,
                         rate: vaccineRate
                     }
                 });
