@@ -72,16 +72,20 @@ const Covid19Client = {
             
             return await webView.evaluateJavaScript(`
                 const CONTAINER = 'div.mainlive_container div.liveboard_layout';
-                let date = document.querySelector(\`\${CONTAINER} h2 span.livedate\`)?.innerText || '';
-                let domestic = document.querySelector(\`\${CONTAINER} div.occur_graph > table.ds_table tbody > tr:first-of-type > td:nth-of-type(4) > span\`)?.innerText ?? 0;
+                let renewalDate = document.querySelector(\`\${CONTAINER} h2 span.livedate\`)?.innerText || '';
+                let domesticCount = document.querySelector(\`\${CONTAINER} div.occur_graph > table.ds_table tbody > tr:first-of-type > td:nth-of-type(4) > span\`)?.innerText ?? 0;
+                let vaccineRateTitle = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .item\`)?.innerText :: '';
                 let vaccineRate = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .percent\`)?.innerText ?? '0%';
             
                 completion({
-                    date: date.match(/\\d{2}\\.\\d{2}\\.\\s00시 기준/g).pop(),
+                    renewalDate: renewalDate.match(/\\d{2}\\.\\d{2}\\.\\s00시 기준/g).pop(),
                     count: {
-                        domestic: domestic
+                        domestic: domesticCount
                     },
-                    vaccineRate: vaccineRate
+                    vaccine: {
+                        title: vaccineRateTitle
+                        rate: vaccineRate
+                    }
                 });
             `, true);
         } catch (e) {
@@ -151,8 +155,8 @@ const createWidget = async (data) => {
     
     widget.addSpacer();
     
-    addText(widget, data.date, 'right', 10);
-    addText(widget, `2차 접종률: ${data.vaccineRate}`, 'right', 10);
+    addText(widget, data.renewalDate, 'right', 10);
+    addText(widget, `${data.vaccine.title}: ${data.vaccine.rate}`, 'right', 10);
     
     return widget;
 };
