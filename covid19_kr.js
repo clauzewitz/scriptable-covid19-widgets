@@ -12,6 +12,7 @@ const log = (args) => {
 };
 
 const ARGUMENTS = {
+    widgetTitle: 'Covid-19',
     sourceUrl: 'http://ncov.mohw.go.kr',
     // desired interval in minutes to refresh the
     // widget. This will only tell IOS that it's
@@ -148,7 +149,7 @@ const createWidget = async (data) => {
     addSymbol(titleStack, 'burn', titleFontSize);
     titleStack.addSpacer(2);
 
-    addText(titleStack, 'Covid-19', 'center', titleFontSize, true);
+    addText(titleStack, ARGUMENTS.widgetTitle, 'center', titleFontSize, true);
     titleStack.addSpacer();
     
     addText(widget, data.count.domestic, 'center', getCountSize(count), true);
@@ -196,7 +197,7 @@ const getLevelColor = (count) => {
 const MENU_ROWS = {
     title: {
         isHeader: true,
-        title: 'Covide-19 Widget',
+        title: `${ARGUMENTS.widgetTitle} Widget`,
         subtitle: `version: ${VERSION}`,
         onSelect: undefined
     },
