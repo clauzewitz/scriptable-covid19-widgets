@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: notes-medical;
-const VERSION = '1.0.2';
+const VERSION = '1.0.3';
 
 const DEBUG = false;
 const log = (args) => {
@@ -77,6 +77,9 @@ const Covid19Client = {
                 let domesticCount = document.querySelector(\`\${CONTAINER} div.occur_graph > table.ds_table tbody > tr:first-of-type > td:nth-of-type(4) > span\`)?.innerText ?? 0;
                 let vaccineRateTitle = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .item\`)?.innerText || '';
                 let vaccineRate = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .percent\`)?.innerText ?? '0%';
+                let childVaccineRateTitle = document.querySelector(\`\${CONTAINER} div.child_list > .item\`)?.innerText || '';
+                let childVaccineRateSubTitle = document.querySelector(\`\${CONTAINER} div.child_list .box:last-of-type .object\`)?.innerText || '';
+                let childVaccineRate = document.querySelector(\`\${CONTAINER} div.child_list .box:last-of-type .percent\`)?.innerText ?? '0%';
             
                 completion({
                     renewalDate: renewalDate.match(/\\d{2}\\.\\d{2}\\.\\s00시 기준/g).pop(),
@@ -86,6 +89,10 @@ const Covid19Client = {
                     vaccine: {
                         title: vaccineRateTitle,
                         rate: vaccineRate
+                    },
+                    childVaccine: {
+                        title: `${childVaccineRateTitle}(${childVaccineRateSubTitle})`,
+                        rate: childVaccineRate
                     }
                 });
             `, true);
@@ -158,6 +165,7 @@ const createWidget = async (data) => {
     
     addText(widget, data.renewalDate, 'right', 10);
     addText(widget, `${data.vaccine.title}: ${data.vaccine.rate}`, 'right', 10);
+    addText(widget, `${data.childVaccine.title}: ${data.childVaccine.rate}`, 'right', 10);
     
     return widget;
 };
