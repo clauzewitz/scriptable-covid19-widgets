@@ -91,7 +91,7 @@ const Covid19Client = {
                         rate: vaccineRate
                     },
                     childVaccine: {
-                        title: `${childVaccineRateTitle}(${childVaccineRateSubTitle})`,
+                        title: \`\${childVaccineRateTitle}(\${childVaccineRateSubTitle})\`,
                         rate: childVaccineRate
                     }
                 });
@@ -160,10 +160,10 @@ const createWidget = async (data) => {
     titleStack.addSpacer();
     
     addText(widget, data.count.domestic, 'center', getCountSize(count), true);
+    addText(widget, data.renewalDate, 'right', 10);
     
     widget.addSpacer();
     
-    addText(widget, data.renewalDate, 'right', 10);
     addText(widget, `${data.vaccine.title}: ${data.vaccine.rate}`, 'right', 10);
     addText(widget, `${data.childVaccine.title}: ${data.childVaccine.rate}`, 'right', 10);
     
