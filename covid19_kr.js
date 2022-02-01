@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: notes-medical;
-const VERSION = '1.0.3';
+const VERSION = '1.0.4';
 
 const DEBUG = false;
 const log = (args) => {
@@ -137,7 +137,7 @@ const Covid19Client = {
 
 const createWidget = async (data) => {
     const padding = 10;
-    const count = Number(data.count.domestic.replace(",", ""));
+    const count = data.count.domestic.replace(',', '');
 
     const widget = new ListWidget();
     widget.refreshAfterDate = new Date((Date.now() + (1000 * 60 * ARGUMENTS.refreshInterval)));
@@ -188,7 +188,11 @@ const addText = (container, text, align = 'center', size = 12, isBold = false) =
     txt.shadowColor = Color.black();
 };
 
-const getCountSize = (count) => (count >= 1000) ? (Device.isPhone() ? 45 : 55) : (Device.isPhone() ? 55 : 70);
+const getCountSize = (count = '100') => {
+    let countLength = count.length < 3 ? 0 : (count.length - 3);
+
+    return Device.isPhone() ? 55 - (countLength * 10) : 55 - (countLength * 7);
+};
 const getLevelColor = (count) => {
     
     if (count > 3000) {
