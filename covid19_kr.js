@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: notes-medical;
-const VERSION = '1.0.4';
+const VERSION = '1.0.5';
 
 const DEBUG = false;
 const log = (args) => {
@@ -191,19 +191,19 @@ const addText = (container, text, align = 'center', size = 12, isBold = false) =
 const getCountSize = (count = '100') => {
     let countLength = count.length < 3 ? 0 : (count.length - 3);
 
-    return Device.isPhone() ? 55 - (countLength * 10) : 55 - (countLength * 7);
+    return Device.isPhone() ? 55 - (countLength * 9) : 55 - (countLength * 7);
 };
-const getLevelColor = (count) => {
+const getLevelColor = (count = 0) => {
     
-    if (count > 3000) {
-        return '#222831';
-    } else if (count > 2000 && count <= 3000) {
-        return '#dc143c';
-    } else if (count > 1000 && count <= 2000) {
-        return '#f05454';
+    if (count > 10000) {
+        return '#DA3539';
+    } else if (count > 4000) {
+        return '#F6C832';
+    } else if (count > 1000) {
+        return '#05B26D';
+    } else {
+        return '#2153B7';
     }
-        
-    return '#0099ff';
 };
 
 const MENU_ROWS = {
