@@ -183,9 +183,7 @@ const addText = (container, text, align = 'center', size = 12, isBold = false) =
     const txt = container.addText(text);
     txt[`${align}AlignText`]();
     txt.font = isBold ? Font.boldSystemFont(size) : Font.systemFont(size);
-    txt.shadowRadius = 3;
     txt.textColor = Color.white();
-    txt.shadowColor = Color.black();
 };
 
 const getCountSize = (count = '100') => {
