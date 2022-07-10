@@ -82,7 +82,7 @@ const Covid19Client = {
                 let childVaccineRate = document.querySelector(\`\${CONTAINER} div.child_list .box:last-of-type .percent\`)?.innerText ?? '0%';
             
                 completion({
-                    renewalDate: renewalDate.match(/\\d{2}\\.\\d{2}\\.\\s00시 기준/g).pop(),
+                    renewalDate: renewalDate.match(/\\d{1,2}\\.\\d{1,2}\\.\\s00시 기준/g).pop(),
                     count: {
                         domestic: domesticCount
                     },
