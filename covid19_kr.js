@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: notes-medical;
-const VERSION = '1.0.5';
+const VERSION = '1.0.6';
 
 const DEBUG = false;
 const log = (args) => {
@@ -73,7 +73,7 @@ const Covid19Client = {
             
             return await webView.evaluateJavaScript(`
                 const CONTAINER = 'div.mainlive_container div.liveboard_layout';
-                let renewalDate = document.querySelector(\`\${CONTAINER} h2 span.livedate\`)?.innerText || '';
+                let renewalDate = document.querySelector(\`\${CONTAINER} div.occurrenceStatus span.livedate\`)?.innerText || '';
                 let domesticCount = document.querySelector(\`\${CONTAINER} div.occur_graph > table.ds_table tbody > tr:first-of-type > td:nth-of-type(4) > span\`)?.innerText ?? 0;
                 let vaccineRateTitle = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .item\`)?.innerText || '';
                 let vaccineRate = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .percent\`)?.innerText ?? '0%';
