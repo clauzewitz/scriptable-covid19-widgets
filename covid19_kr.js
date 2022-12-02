@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: notes-medical;
-const VERSION = '1.0.6';
+const VERSION = '1.0.7';
 
 const DEBUG = false;
 const log = (args) => {
@@ -75,11 +75,10 @@ const Covid19Client = {
                 const CONTAINER = 'div.mainlive_container div.liveboard_layout';
                 let renewalDate = document.querySelector(\`\${CONTAINER} div.occurrenceStatus span.livedate\`)?.innerText || '';
                 let domesticCount = document.querySelector(\`\${CONTAINER} div.occur_graph > table.ds_table tbody > tr:first-of-type > td:nth-of-type(4) > span\`)?.innerText ?? 0;
-                let vaccineRateTitle = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .item\`)?.innerText || '';
-                let vaccineRate = document.querySelector(\`\${CONTAINER} div.vaccine_list .box:last-of-type .percent\`)?.innerText ?? '0%';
-                let childVaccineRateTitle = document.querySelector(\`\${CONTAINER} div.child_list > .item\`)?.innerText || '';
-                let childVaccineRateSubTitle = document.querySelector(\`\${CONTAINER} div.child_list .box:last-of-type .object\`)?.innerText || '';
-                let childVaccineRate = document.querySelector(\`\${CONTAINER} div.child_list .box:last-of-type .percent\`)?.innerText ?? '0%';
+                let vaccineRateTitle = document.querySelector(\`\${CONTAINER} ul.today_info_list li:first-of-type .inner li:last-of-type\`)?.innerText || '';
+                let vaccineRate = document.querySelector(\`\${CONTAINER} ul.today_info_list li:last-of-type .inner li:last-of-type span:last-of-type\`)?.innerText ?? '0%';
+                let winterVaccineRateTitle = document.querySelector(\`\${CONTAINER} ul.today_info_list li:first-of-type .inner li:first-of-type\`)?.innerText || '';
+                let winterVaccineRate = document.querySelector(\`\${CONTAINER} ul.today_info_list li:last-of-type .inner li:first-of-type span:last-of-type\`)?.innerText ?? '0%';
             
                 completion({
                     renewalDate: renewalDate.match(/\\d{1,2}\\.\\d{1,2}\\.\\s00시 기준/g).pop(),
@@ -90,9 +89,9 @@ const Covid19Client = {
                         title: vaccineRateTitle,
                         rate: vaccineRate
                     },
-                    childVaccine: {
-                        title: \`\${childVaccineRateTitle}(\${childVaccineRateSubTitle})\`,
-                        rate: childVaccineRate
+                    winterVaccine: {
+                        title: winterVaccineRateTitle,
+                        rate: winterVaccineRate
                     }
                 });
             `, true);
@@ -165,7 +164,7 @@ const createWidget = async (data) => {
     widget.addSpacer();
     
     addText(widget, `${data.vaccine.title}: ${data.vaccine.rate}`, 'right', 10);
-    addText(widget, `${data.childVaccine.title}: ${data.childVaccine.rate}`, 'right', 10);
+    addText(widget, `${data.winterVaccine.title}: ${data.winterVaccine.rate}`, 'right', 10);
     
     return widget;
 };
