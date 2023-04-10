@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: notes-medical;
-const VERSION = '1.0.7';
+const VERSION = '1.0.8';
 
 const DEBUG = false;
 const log = (args) => {
@@ -13,7 +13,7 @@ const log = (args) => {
 
 const ARGUMENTS = {
     widgetTitle: 'Covid-19',
-    sourceUrl: 'http://ncov.mohw.go.kr',
+    sourceUrl: 'http://ncov.kdca.go.kr',
     // desired interval in minutes to refresh the
     // widget. This will only tell IOS that it's
     // ready for a refresh, whether it actually 
@@ -77,8 +77,6 @@ const Covid19Client = {
                 let domesticCount = document.querySelector(\`\${CONTAINER} div.occur_graph > table.ds_table tbody > tr:first-of-type > td:nth-of-type(4) > span\`)?.innerText ?? 0;
                 let vaccineRateTitle = document.querySelector(\`\${CONTAINER} ul.today_info_list li:first-of-type .inner li:last-of-type\`)?.innerText || '';
                 let vaccineRate = document.querySelector(\`\${CONTAINER} ul.today_info_list li:last-of-type .inner li:last-of-type span:last-of-type\`)?.innerText ?? '0%';
-                let winterVaccineRateTitle = document.querySelector(\`\${CONTAINER} ul.today_info_list li:first-of-type .inner li:first-of-type\`)?.innerText || '';
-                let winterVaccineRate = document.querySelector(\`\${CONTAINER} ul.today_info_list li:last-of-type .inner li:first-of-type span:last-of-type\`)?.innerText ?? '0%';
             
                 completion({
                     renewalDate: renewalDate.match(/\\d{1,2}\\.\\d{1,2}\\.\\s00시 기준/g).pop(),
@@ -88,10 +86,6 @@ const Covid19Client = {
                     vaccine: {
                         title: vaccineRateTitle,
                         rate: vaccineRate
-                    },
-                    winterVaccine: {
-                        title: winterVaccineRateTitle,
-                        rate: winterVaccineRate
                     }
                 });
             `, true);
@@ -164,7 +158,6 @@ const createWidget = async (data) => {
     widget.addSpacer();
     
     addText(widget, `${data.vaccine.title}: ${data.vaccine.rate}`, 'right', 10);
-    addText(widget, `${data.winterVaccine.title}: ${data.winterVaccine.rate}`, 'right', 10);
     
     return widget;
 };
