@@ -85,7 +85,7 @@ const Covid19Client = {
                     },
                     vaccine: {
                         title: vaccineRateTitle,
-                        rate: vaccineRate.match(/(.*)\*\*$/i).pop()
+                        rate: vaccineRate.match(/(.*)\\*\\*$/i).pop()
                     }
                 });
             `, true);
