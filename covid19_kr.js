@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: notes-medical;
-const VERSION = '1.0.8';
+const VERSION = '1.0.9';
 
 const DEBUG = false;
 const log = (args) => {
@@ -85,7 +85,7 @@ const Covid19Client = {
                     },
                     vaccine: {
                         title: vaccineRateTitle,
-                        rate: vaccineRate
+                        rate: vaccineRate.match(/(.*)\*\*$/i).pop()
                     }
                 });
             `, true);
