@@ -84,7 +84,7 @@ const Covid19Client = {
                         domestic: domesticCount
                     },
                     vaccine: {
-                        title: vaccineRateTitle,
+                        title: vaccineRateTitle.replace(/\n/g, ''),
                         rate: vaccineRate.match(/(.*)\\*\\*$/i).pop()
                     }
                 });
